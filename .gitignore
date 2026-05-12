@@ -1,0 +1,16 @@
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Build / temp
+gen.py
+build.py
+*.log
+node_modules/
