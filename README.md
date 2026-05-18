@@ -1,66 +1,46 @@
-# Dr. Mallika Kumar — Portfolio Website
+# Dr. Mallika Kumar Portfolio
 
-Official portfolio of **Dr. Mallika Kumar**, Professor of Economics and Founder Coordinator of the Office of International Programmes (OIP) at Shri Ram College of Commerce (SRCC), University of Delhi.
-
-## Overview
-
-A single-file, fully responsive portfolio website with a built-in admin edit mode. Built with pure HTML5, CSS3 and vanilla JavaScript — no frameworks, no build step.
-
-## Features
-
-- Sticky navigation with smooth scroll
-- Hero section with editable profile photo
-- About section with four-paragraph biography
-- 12 Key Positions & Affiliations
-- 18-entry experience timeline (2010–2025)
-- 23 publications with filter tabs (Scopus, UGC-Care, Journals, Books)
-- 4 Awards & Honours
-- Global Reach with interactive SVG world map
-- 14 International MoUs in a styled table
-- Photo gallery with upload support
-- Contact section with form
-- Admin edit mode (SHA-256 password auth)
-- localStorage persistence
-- Export/Reset data controls
-- Fully responsive (desktop-first)
-
-## Admin Access
-
-Click the **Admin Login** button in the nav bar.
-
-- **Password:** `SRCCAdmin@2025`
-
-In admin mode you can:
-- Inline-edit any text
-- Click the profile photo to upload a new one
-- Add / edit / delete cards, timeline entries, publications, awards, MoUs
-- Upload gallery photos
-- Update social links
-- Save all changes to `localStorage`
-- Export data as JSON
-- Reset to default
+This is a complete, secure, and production-ready full-stack web application for Dr. Mallika Kumar's portfolio.
 
 ## Tech Stack
+- **Frontend**: Vanilla HTML/CSS/JS (Securely interacts with the backend API)
+- **Backend**: Node.js + Express
+- **Database**: MongoDB (via Mongoose)
+- **Security**: JWT Authentication, bcrypt password hashing, Helmet
 
-- HTML5 + CSS3 + Vanilla JavaScript
-- Google Fonts: Playfair Display + Source Sans 3
-- Font Awesome 6.5 (via CDN)
-- No build tools required
+## Features Added for Security & Deployment
+1. **Real Backend**: Replaced insecure browser `localStorage` with a robust Node.js API.
+2. **Database Integration**: Portfolio state and contact messages are securely saved in MongoDB.
+3. **Secure Authentication**: Admin login uses bcrypt for password hashing and JSON Web Tokens (JWT) for secure session management.
+4. **File Uploads**: Base64 strings are replaced by actual file uploads using `multer`. Images are saved in the `backend/uploads/` directory.
 
-## Running Locally
+## Local Development Setup
 
-Just open `index.html` in any modern browser — no server needed.
+1. **Install Dependencies**
+   Navigate to the project root and install the required npm packages:
+   ```bash
+   npm install
+   ```
 
-## Deploying
+2. **Configure Environment Variables**
+   Open the `.env` file in the project root and set the following:
+   - `MONGO_URI`: The connection string for your MongoDB database (e.g., MongoDB Atlas URI).
+   - `PORT`: The port the server will run on (default 5000).
+   - `JWT_SECRET`: A long, random string used to sign session tokens.
+   - `ADMIN_PASSWORD`: The password you want to use to access the admin panel.
 
-This is a static site. It works on GitHub Pages, Netlify, Vercel, Cloudflare Pages, or any static host.
+3. **Start the Server**
+   ```bash
+   npm start
+   ```
+   The application will be accessible at `http://localhost:5000`.
 
-### GitHub Pages
-1. Push to a GitHub repository
-2. Go to **Settings → Pages**
-3. Source: **Deploy from a branch**, Branch: **main** / root
-4. Save, and the site goes live at `https://<username>.github.io/<repo>/`
+## Deployment Guide
 
-## License
+To deploy this application to a service like Render, Heroku, or Vercel:
 
-All rights reserved. Content courtesy of Dr. Mallika Kumar.
+1. Connect your GitHub repository to your chosen hosting provider.
+2. Set the **Build Command** to `npm install`.
+3. Set the **Start Command** to `node backend/server.js`.
+4. In the hosting provider's dashboard, add all the environment variables from your `.env` file (especially your `MONGO_URI` and `JWT_SECRET`).
+5. Ensure your MongoDB Atlas cluster allows incoming connections from anywhere (`0.0.0.0/0`) if you are deploying to a cloud provider with dynamic IPs.
